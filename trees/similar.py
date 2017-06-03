@@ -1,17 +1,4 @@
-#
-# diameter of a tree is the maximum ( maximum(left diameter, right diamter),
-#                                     left_height + right_height +1)
-#            A
-#          /  \
-#         E   F
-#        / \
-#       C   D
-#      /     \
-#     B       Z
-#    /         \
-#   X           R
-#
-#  Diameter of this tree is X-B-C-E-D-Z-R
+
 
 import util
 

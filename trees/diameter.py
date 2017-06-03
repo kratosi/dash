@@ -1,6 +1,6 @@
 #
-# diameter of a tree is the maximum ( maximum(left diameter, right diamter),
-#                                     left_height + right_height +1)
+# diameter of a tree is the maximum( maximum(left diameter, right diamter),
+#                                     (left_height + right_height +1))
 #            A
 #          /  \
 #         E   F
