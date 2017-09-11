@@ -12,7 +12,8 @@ class BST(object):
         self.pprint (node.right)
 
     def insert(self, data):
-        """ Insert in a Bst
+        """
+         Insert in a Bst
          check if new data is less than root data
            - if yes then check if left child exists
              - if yes then move to left child

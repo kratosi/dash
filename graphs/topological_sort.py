@@ -24,4 +24,10 @@ g.add_edge('C', 'E')
 g.add_edge('E', 'F')
 g.add_edge('D', 'F')
 
+"""
+A -> C -> D
+   / \    \
+  .   .    .
+ B    E -> F
+ """
 sort(g)

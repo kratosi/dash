@@ -34,15 +34,15 @@ def diameter(root, path):
     if not root:
         return 0
 
-    dl = diameter(root.left, path)
-    dr = diameter(root.right, path)
+    left_tree_diameter = diameter(root.left, path)
+    right_tree_diameter = diameter(root.right, path)
 
     hl = height(root.left)
     hr = height(root.right)
 
-    if (hl + hr + 1) > max(dl, dr):
+    if (hl + hr + 1) > max(left_tree_diameter, right_tree_diameter):
         path.append(root.data)
-    return max(max(dl, dr), (hl + hr + 1))
+    return max(max(left_tree_diameter, right_tree_diameter), (hl + hr + 1))
 
 if __name__ == '__main__':
     root = util.load_tree('diameter.yaml')

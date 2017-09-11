@@ -11,15 +11,23 @@ class Vertex:
         return self.adjacent
 
 
+class Edge(object):
+    def __init__(self, vertex1, vertex2, weight):
+        self.weight = weight
+        self.vertex1 = vertex1
+        self.vertex2 = vertex2
+
+
 class Graph:
     def __init__(self):
         self.undirected = False
         self.vertices = {}
+        self.edges = []
 
     def get_all_vertices(self):
         return self.vertices.values()
 
-    def add_edge(self, vertex1, vertex2):
+    def add_edge(self, vertex1, vertex2, weight=0):
         v1 = self.vertices.get(vertex1)
         if not v1:
             v1 = Vertex(vertex1)
@@ -33,3 +41,6 @@ class Graph:
         v1.add_adjacent_vertex(v2)
         if self.undirected:
             v2.add_adjacent_vertex(v1)
+
+        e = Edge(v1, v2, weight)
+        self.edges.append(e)
