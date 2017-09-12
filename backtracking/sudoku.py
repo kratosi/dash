@@ -1,36 +1,32 @@
+def valid_cell(board, row, col):
+    if board[row][col] == 0:
+        return True
+    return False
 
 
-def get_value(board, row, col):
-    if board[row][col] != 0:
-        return board[row][col]
+def can_set_value(board, row, col, val):
+    #if board[row][col] != 0:
+    #    return False
 
-    for i in range(1, 10):
-        valid = True
-        for j in range(len(board)):
-            if board[row][j] == i:
-                valid = False
-                break
+    #for i in range(1, 10):
+    #    valid = True
+    for j in range(len(board)):
+        if board[row][j] == val:
+            return False
 
-            if board[j][col] == i:
-                valid = False
-                break
+        if board[j][col] == val:
+            return False
 
 
-        ir = (row / 3) * 3
-        ic = (col / 3) * 3
+    ir = (row / 3) * 3
+    ic = (col / 3) * 3
 
-        for j in range(ir, ir + 3):
-            for k in range(ic, ic + 3):
-                if board[j][k] == i:
-                    valid = False
-                    break
-            if not valid:
-                break
+    for j in range(ir, ir + 3):
+        for k in range(ic, ic + 3):
+            if board[j][k] == val:
+                return False
 
-        if valid:
-            return i
-
-    return -1
+    return True
 
 
 def get_next_cell(row, col, limit):
@@ -40,6 +36,7 @@ def get_next_cell(row, col, limit):
         row += 1
     return row, col
 
+
 def play(board, row, col):
     if row > len(board) - 1:
         return True
@@ -48,17 +45,28 @@ def play(board, row, col):
     #    for j in range(len(board)):
 
     print "before" ,row,col
-    n = get_value(board, row, col)
-    if n == -1:
-        return False
 
-    board[row][col] = n
-    print row,col
-    print_board(board)
-    x ,y = get_next_cell(row, col, len(board))
-    if play(board, x, y):
-        return True
-    board[row][col] = 0
+    if not valid_cell(board, row, col):
+        x ,y = get_next_cell(row, col, len(board))
+        if play(board, x, y):
+            return True
+    else:
+        print "Valid cell ", row, col
+        for val in range(1,10): 
+            cs = can_set_value(board, row, col, val)
+            #if n == -1:
+            #    return False
+            if not cs:
+                continue
+
+            board[row][col] = val
+            print row,col
+            print_board(board)
+            x ,y = get_next_cell(row, col, len(board))
+            if play(board, x, y):
+                return True
+            if cs:
+                board[row][col] = 0
 
     return False
 
@@ -94,3 +102,4 @@ def main():
     print_board(board)
 
 main()
+
